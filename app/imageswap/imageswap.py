@@ -102,6 +102,8 @@ def mutate():
 
     else:
 
+        app.logger.info(f"Found workload {namespace}/{workload} type {workload_type}")
+
         # Change workflow/json path based on K8s object type
         if workload_type == "Pod":
 
@@ -117,7 +119,8 @@ def mutate():
                     app.logger.info(f"Processing init-container: {namespace}/{workload}")
                     needs_patch = swap_image(init_container_spec) or needs_patch
 
-        else:
+
+        elif workload_type == "Deployment":
 
             for container_spec in modified_spec["request"]["object"]["spec"]["template"]["spec"]["containers"]:
 
@@ -130,6 +133,9 @@ def mutate():
 
                     app.logger.info(f"Processing init-container: {namespace}/{workload}")
                     needs_patch = swap_image(init_container_spec) or needs_patch
+
+        else:
+            needs_patch = False
 
     if needs_patch:
 

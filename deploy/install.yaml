@@ -191,6 +191,7 @@ data:
               - "*"
             resources:
               - "pods"
+              - "deployments"
         failurePolicy: Fail
         reinvocationPolicy: IfNeeded
         namespaceSelector:
