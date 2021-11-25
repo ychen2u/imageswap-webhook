@@ -191,7 +191,7 @@ release: echo
 .PHONY: build-imageswap-init-latest
 build-imageswap-init-latest:
 
-	$(DOCKER) build -t thewebroot/imageswap-init:latest app/imageswap-init/
+	$(DOCKER) build --build-arg http_proxy --build-arg https_proxy --build-arg no_proxy -t thewebroot/imageswap-init:latest app/imageswap-init/
 
 # Push ImageSwap-Init container image to DockerHub
 .PHONY: push-imageswap-init-latest
@@ -203,7 +203,7 @@ push-imageswap-init-latest:
 .PHONY: build-imageswap-latest
 build-imageswap-latest:
 
-	$(DOCKER) build -t thewebroot/imageswap:latest app/imageswap/
+	$(DOCKER) build --build-arg http_proxy --build-arg https_proxy --build-arg no_proxy -t thewebroot/imageswap:latest app/imageswap/
 
 # Push ImageSwap container image to DockerHub
 .PHONY: push-imageswap-latest
@@ -219,7 +219,7 @@ build-latest: build-imageswap-init-latest push-imageswap-init-latest build-image
 .PHONY: build-imageswap-init-versioned
 build-imageswap-init-versioned:
 
-	$(DOCKER) build -t thewebroot/imageswap-init:${IMAGESWAP_INIT_VERSION} app/imageswap-init/
+	$(DOCKER) build --build-arg http_proxy --build-arg https_proxy --build-arg no_proxy -t thewebroot/imageswap-init:${IMAGESWAP_INIT_VERSION} app/imageswap-init/
 
 # Push ImageSwap-Init container image to DockerHub
 .PHONY: push-imageswap-init-versioned
@@ -231,7 +231,7 @@ push-imageswap-init-versioned:
 .PHONY: build-imageswap-versioned
 build-imageswap-versioned:
 
-	$(DOCKER) build -t thewebroot/imageswap:${IMAGESWAP_VERSION} app/imageswap/
+	$(DOCKER) build --build-arg http_proxy --build-arg https_proxy --build-arg no_proxy -t thewebroot/imageswap:${IMAGESWAP_VERSION} app/imageswap/
 
 # Push ImageSwap container image to DockerHub
 .PHONY: push-imageswap-versioned
