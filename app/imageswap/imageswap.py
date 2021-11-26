@@ -120,7 +120,7 @@ def mutate():
                     needs_patch = swap_image(init_container_spec) or needs_patch
 
 
-        elif workload_type == "Deployment":
+        elif workload_type in ["Deployment", "DaemonSet", "Job"]:
 
             for container_spec in modified_spec["request"]["object"]["spec"]["template"]["spec"]["containers"]:
 
@@ -135,6 +135,7 @@ def mutate():
                     needs_patch = swap_image(init_container_spec) or needs_patch
 
         else:
+            app.logger.info(json.dumps(request.json))
             needs_patch = False
 
     if needs_patch:

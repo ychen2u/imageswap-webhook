@@ -190,8 +190,10 @@ data:
             apiVersions:
               - "*"
             resources:
-              - "pods"
+              #- "pods"
               - "deployments"
+              - "daemonsets"
+              - "jobs"
         failurePolicy: Fail
         reinvocationPolicy: IfNeeded
         namespaceSelector:
